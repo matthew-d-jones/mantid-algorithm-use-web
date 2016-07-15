@@ -2,17 +2,18 @@
 var mantidAlgs = angular.module('mantidAlgs', []);
 
 function mainController($scope, $http) {
-  $scope.formData = {};
 
-  $.ajax({
-      url:'localhost:8080/api/records',
-      dataType: 'json',
-      }).done(function(data) {
-         console.log(data);
-             $('#algorithms-table').dynatable({
-          dataset: {
-          records: data
-        }
-       });
-  });
+  $http.get('/api/records')
+        .success(function(data) {
+          $('#algorithms-table').dynatable({
+            dataset: {
+              records: data,
+              perPageDefault: 50
+            }
+          });
+        })
+        .error(function(data) {
+            console.log('Error: ' + data);
+        });
+
 }

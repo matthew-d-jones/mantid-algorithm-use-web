@@ -8,10 +8,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
 
-    <title>Mantid Algorithm Usage Stats</title>
+    <title>Mantid Algorithm Stats</title>
 
     <!-- SCROLLS -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+    <link rel="stylesheet" media="all" href="app.css">
+
+    <link rel="stylesheet" media="all" href="dynatable/jquery.dynatable.css">
+
     <style>
         html                    { overflow-y:scroll; }
         body                    { padding-top:50px; }
@@ -21,7 +25,6 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script><!-- load angular -->
     <script src="dynatable/jquery.dynatable.js"></script>
-    <script src="dynatable/jquery.dynatable.css"></script>
     <script src="core.js"></script>
 
 </head>
@@ -31,12 +34,12 @@
 
         <!-- HEADER -->
         <div class="jumbotron text-center">
-            <h1>Mantid Algorithm Useage Stats</h1>
+            <h1>Mantid Algorithm Stats</h1>
         </div>
 
         <!-- ALGS LIST -->
 
-    <table id="algorithms-table">
+    <table id="algorithms-table" class="table table-bordered">
         <thead>
             <th>Url</th>
             <th>Type</th>

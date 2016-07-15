@@ -1,0 +1,55 @@
+<!-- index.html -->
+<!doctype html>
+
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="mantidAlgs">
+<head>
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+
+    <title>Mantid Algorithm Usage Stats</title>
+
+    <!-- SCROLLS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+    <style>
+        html                    { overflow-y:scroll; }
+        body                    { padding-top:50px; }
+    </style>
+
+    <!-- SPELLS -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script><!-- load angular -->
+    <script src="dynatable/jquery.dynatable.js"></script>
+    <script src="dynatable/jquery.dynatable.css"></script>
+    <script src="core.js"></script>
+
+</head>
+<!-- SET THE CONTROLLER AND GET DATA -->
+<body ng-controller="mainController">
+    <div class="container">
+
+        <!-- HEADER -->
+        <div class="jumbotron text-center">
+            <h1>Mantid Algorithm Useage Stats</h1>
+        </div>
+
+        <!-- ALGS LIST -->
+
+    <table id="algorithms-table">
+        <thead>
+            <th>Url</th>
+            <th>Type</th>
+            <th>Name</th>
+            <th>Internal</th>
+            <th>Count</th>
+            <th>Mantid Version</th>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    </div>
+
+</body>
+</html>

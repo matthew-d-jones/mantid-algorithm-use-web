@@ -40,8 +40,15 @@
             });
 
             response.on("end", function (err) {
-              res.json(buffer)
+              var record_obj = JSON.parse(buffer)
+              res.json(record_obj['results'])
+              //res.json(buffer)
             });
           });
 
+        });
+
+    // application -------------------------------------------------------------
+        app.get('*', function(req, res) {
+          res.sendfile('./public/index.html'); // load the single view file (angular will handle the page changes on the front-end)
         });

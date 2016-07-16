@@ -5,6 +5,7 @@
       var morgan = require('morgan');             // log requests to the console (express4)
       var bodyParser = require('body-parser');    // pull information from HTML POST (express4)
       var methodOverride = require('method-override'); // simulate DELETE and PUT (express4)
+      var extend = require('extend');
 
     // configuration =================
 
@@ -26,9 +27,15 @@
         app.get('/api/records', function(req, res) {
 
           var http = require("http");
-          var url = "http://reports.mantidproject.org/api/feature?page=1&format=json";
+          var url_begin = "http://reports.mantidproject.org/api/feature?page=";
+          var url_end = "&format=json";
 
-          http.get(url, function (response) {
+          var records = [];
+
+          function attempt(page) { http.get(url_begin+page.toString()+url_end, function (response) {
+
+            console.log("Getting data from page "+page.toString())
+
             // data is streamed in chunks from the server
             // so we have to handle the "data" event
             var buffer = "",
@@ -40,11 +47,25 @@
             });
 
             response.on("end", function (err) {
+              if (buffer=='{"detail": "Not found"}') {
+                res.json(records)
+                console.log("Reached end of pages");
+              } else {
               var record_obj = JSON.parse(buffer)
-              res.json(record_obj['results'])
-              //res.json(buffer)
+              records = records.concat(record_obj['results'])
+              // Get next page of data
+              attempt(page+1)
+            }
             });
+
+            response.on("error", function (err) {
+              console.log("Error collecting data from remote server")
+            });
+
+            //res.json(records['results'])
           });
+        }
+          attempt(1);
 
         });
 
